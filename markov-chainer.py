@@ -10,7 +10,7 @@ def markov_chain2(text):
     '''Takes a string file and generates a Markov-chain of length 2
     
     text: string
-    num: int
+    
     return: dict of keys of strings and values of list of strings'''
     #print("\nCreating Markov Chain 2")
     words = text.split()
@@ -30,7 +30,7 @@ def markov_chain1(text):
     '''Takes a string file and generates a Markov-chain of length 1
     
     text: string
-    num: int
+    
     return: dict of keys of strings and values of list of strings'''
     #print("\nCreating Markov Chain 1")
     words = text.split()
@@ -83,6 +83,8 @@ def generate_text(md1, md2, sw, num = 100):
     md2: dictionary of strings as keys with list of sttings as values
 
     sw: list of list of strings
+
+    num: integer
 
     return: string
     '''
