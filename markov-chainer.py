@@ -12,12 +12,12 @@ def markov_chain2(text):
     text: string
     
     return: dict of keys of strings and values of list of strings'''
-    #print("\nCreating Markov Chain 2")
+    print("\nCreating Markov Chain 2")
     words = text.split()
     markov_dict = dict()
     for index in range(len(words) - 2):  
-        #if index % 1000 == 0:
-        #    print(".", end="")
+        # if index % 1000 == 0:
+        #     print(".", end="")
         word = words[index] + words[index + 1]
         next_word = words[index + 2]
         if word in markov_dict:
@@ -32,12 +32,12 @@ def markov_chain1(text):
     text: string
     
     return: dict of keys of strings and values of list of strings'''
-    #print("\nCreating Markov Chain 1")
+    print("\nCreating Markov Chain 1")
     words = text.split()
     markov_dict = dict()
     for index in range(len(words) - 1):  
-        #if index % 1000 == 0:
-        #    print(".", end="")
+        # if index % 1000 == 0:
+        #     print(".", end="")
         word = words[index] 
         next_word = words[index + 1]
         if word in markov_dict:
@@ -55,7 +55,7 @@ def preprocess(text):
     completestring = ""
     begun = False
     loader = 0
-    #print("Loading", text)
+    print("Loading", text)
     print("Generating a random text of Project Gutenberg book called")
     with open(filename, "r", encoding="utf-8") as file:
         for line in file:
@@ -88,7 +88,7 @@ def generate_text(md1, md2, sw, num = 100):
 
     return: list of strings
     '''
-    #print("\nGenerating text:")
+    print("\nGenerating text:")
     chose_startwords = random.randint(0, len(sw) - 1)
     text = sw[chose_startwords]
     for i in range(num):  
@@ -130,11 +130,15 @@ def markovize_this(filename, num = 100):
 
     return: list of strings
     '''
-    text = preprocess(filename)
-    start_words = starter_words(text)
-    words1 = markov_chain1(text)
-    words2 = markov_chain2(text)
-    generated = generate_text(words1, words2, start_words, num)
+    try:
+        text = preprocess(filename)
+        start_words = starter_words(text)
+        words1 = markov_chain1(text)
+        words2 = markov_chain2(text)
+        generated = generate_text(words1, words2, start_words, num)
+    except:
+        print("No such file!")
+        generated = ["No file"]
     return generated
 
 def getfile():
