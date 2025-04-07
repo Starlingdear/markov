@@ -129,7 +129,7 @@ def markovize_this(filename, num = 100):
 
 def getfile():
     a = input("Filename? ")
-    if ".txt" == a[-4:-1:]:
+    if ".txt" in a:
         return a
     else:
         a = a + ".txt"
