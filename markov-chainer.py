@@ -86,7 +86,7 @@ def generate_text(md1, md2, sw, num = 100):
 
     num: integer
 
-    return: string
+    return: list of strings
     '''
     #print("\nGenerating text:")
     chose_startwords = random.randint(0, len(sw) - 1)
@@ -106,6 +106,7 @@ def generate_text(md1, md2, sw, num = 100):
             candidates = md2[act_word]
             chosen = random.randint(0, len(candidates)-1)
             text.append(candidates[chosen])
+    return text
 
 def starter_words(text):
     '''Takes a text, and finds a possible pair of starting words
@@ -122,6 +123,13 @@ def starter_words(text):
     return starter_words
 
 def markovize_this(filename, num = 100):
+    '''runs thorugh all the processes of markovization
+
+    filename: string
+    num: integer (default 100)
+
+    return: list of strings
+    '''
     text = preprocess(filename)
     start_words = starter_words(text)
     words1 = markov_chain1(text)
@@ -130,6 +138,10 @@ def markovize_this(filename, num = 100):
     return generated
 
 def getfile():
+    '''ask for a filename, filename must be *.txt - if .txt is not written it adds it
+    
+    return: string
+    '''
     a = input("Filename? ")
     if ".txt" in a:
         return a
@@ -138,6 +150,10 @@ def getfile():
         return a
 
 def getnumber():
+    '''Asks for a number. Has to be integer, otherwise it returns 100
+    
+    return: integer
+    '''
     try:
         b = int(input("How long? Integer please: "))
     except ValueError:
@@ -147,4 +163,3 @@ def getnumber():
 filename = getfile()
 number = getnumber()
 generated_text = markovize_this(filename, int(number))
-
